@@ -1,4 +1,4 @@
-package br.com.agibank.liebherrapp
+package br.com.liebherr.liebherrapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

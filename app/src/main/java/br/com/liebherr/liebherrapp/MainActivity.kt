@@ -1,4 +1,4 @@
-package br.com.agibank.liebherrapp
+package br.com.liebherr.liebherrapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

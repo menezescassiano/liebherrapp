@@ -1,4 +1,4 @@
-package br.com.agibank.liebherrapp
+package br.com.liebherr.liebherrapp
 
 import org.junit.Test
 

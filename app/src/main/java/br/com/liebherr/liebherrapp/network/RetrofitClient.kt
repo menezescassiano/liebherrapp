@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitClient {
 
     companion object {
-        private const val BASE_URL = "http://www.omdbapi.com/?apikey=a87c387"
+        private const val BASE_URL = "http://www.omdbapi.com/"
 
         private const val TIMEOUT: Long = 15
 

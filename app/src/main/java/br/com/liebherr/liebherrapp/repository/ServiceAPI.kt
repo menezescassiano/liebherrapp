@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface ServiceAPI {
 
-    @GET
+    @GET("?apikey=a87c387")
     suspend fun getMovies(@Query("s") movie: String): ResponseBody
 }

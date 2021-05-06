@@ -59,6 +59,10 @@ android {
         classpath = configurations.ktlint
         args "-F", "src/**/*.kt"
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

@@ -2,12 +2,11 @@ package br.com.liebherr.liebherrapp.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.liebherr.liebherrapp.model.Movie
 
 class MainViewModel : ViewModel() {
 
     val navigationEvent = MutableLiveData<Navigation>()
-    lateinit var selectedMovie: Movie
+    lateinit var selectedMovie: String
 
     fun navigate(navigation: Navigation) {
         navigationEvent.postValue(navigation)

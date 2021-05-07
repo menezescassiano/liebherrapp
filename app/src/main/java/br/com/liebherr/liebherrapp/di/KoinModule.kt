@@ -4,9 +4,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
+import br.com.liebherr.liebherrapp.home.viewmodel.MovieDetailsViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MoviesListViewModel
 import br.com.liebherr.liebherrapp.network.RetrofitClient
 import br.com.liebherr.liebherrapp.repository.MoviesRepository
+import br.com.liebherr.liebherrapp.usecase.GetMovieDetailsUseCase
 import br.com.liebherr.liebherrapp.usecase.GetMoviesUseCase
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -24,11 +26,13 @@ private val repositoryModule = module {
 
 private val useCases = module {
     single { GetMoviesUseCase(repository = get()) }
+    single { GetMovieDetailsUseCase(repository = get()) }
 }
 
 private val viewModelModule = module {
     viewModel { MainViewModel() }
     viewModel { MoviesListViewModel(getMoviesUseCase = get()) }
+    viewModel { MovieDetailsViewModel(getMovieDetailsUseCase = get()) }
 }
 
 fun loadKoinModules() {

@@ -49,7 +49,7 @@ class MoviesListFragment : Fragment() {
             listAdapter.apply {
                 observe(selectedMovie) {
                     it?.let {
-                        flowViewModel.selectedMovie = it
+                        flowViewModel.selectedMovie = it.imdbID
                         flowViewModel.navigate(MainViewModel.Navigation.MovieDetails)
                     }
                 }

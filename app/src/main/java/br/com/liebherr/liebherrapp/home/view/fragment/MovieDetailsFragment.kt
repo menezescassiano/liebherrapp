@@ -11,6 +11,8 @@ import br.com.liebherr.liebherrapp.databinding.FragmentMovieDetailsBinding
 import br.com.liebherr.liebherrapp.extension.activityViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MovieDetailsViewModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailsFragment : Fragment() {
@@ -24,7 +26,19 @@ class MovieDetailsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_details, container, false)
 
         binding.movieTitle.text = flowViewModel.selectedMovie.title
+        setImageUrl()
         return binding.root
+    }
+
+    private fun setImageUrl() {
+        val imageView = binding.imageView
+        val placeHolder = R.drawable.placeholder
+
+        flowViewModel.selectedMovie.poster.run {
+            Glide.with(imageView.context).load(this)
+                .apply(RequestOptions().placeholder(placeHolder))
+                .into(imageView)
+        }
     }
 
 }

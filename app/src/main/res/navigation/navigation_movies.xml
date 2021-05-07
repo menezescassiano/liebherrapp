@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_movies"
+    app:startDestination="@id/frag_movies_list">
+
+    <fragment
+        android:id="@+id/frag_movies_list"
+        android:name="br.com.liebherr.liebherrapp.home.view.fragment.MoviesListFragment"
+        android:label="PendingOrdersFragment"
+        tools:layout="@layout/fragment_movies_list" />
+
+    <fragment
+        android:id="@+id/frag_movie_details"
+        android:name="br.com.liebherr.liebherrapp.home.view.fragment.MovieDetailsFragment"
+        android:label="PendingOrdersFragment"
+        tools:layout="@layout/fragment_movie_details" />
+
+</navigation>

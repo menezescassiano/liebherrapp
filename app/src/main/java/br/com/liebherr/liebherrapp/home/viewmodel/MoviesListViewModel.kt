@@ -1,14 +1,14 @@
-package br.com.liebherr.liebherrapp
+package br.com.liebherr.liebherrapp.home.viewmodel
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import br.com.liebherr.liebherrapp.usecase.GetMoviesUseCase
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
+class MoviesListViewModel(private val getMoviesUseCase: GetMoviesUseCase) : ViewModel(),
+    LifecycleObserver {
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getMovies() {
-
         viewModelScope.launch {
             getMoviesUseCase.invoke().also {
                 println(it.toString())

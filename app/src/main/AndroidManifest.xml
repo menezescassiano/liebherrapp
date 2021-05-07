@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LiebherrApp"
         tools:targetApi="m">
-        <activity android:name="br.com.liebherr.liebherrapp.MainActivity">
+        <activity android:name="br.com.liebherr.liebherrapp.home.view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,12 +1,11 @@
 package br.com.liebherr.liebherrapp.repository
 
-import okhttp3.ResponseBody
-import retrofit2.Response
+import br.com.liebherr.liebherrapp.model.SearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ServiceAPI {
 
     @GET("?apikey=a87c387")
-    suspend fun getMovies(@Query("s") movie: String): ResponseBody
+    suspend fun getMovies(@Query("s") movie: String): SearchResponse
 }

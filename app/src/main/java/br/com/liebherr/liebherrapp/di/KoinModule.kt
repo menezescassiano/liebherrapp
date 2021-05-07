@@ -1,6 +1,10 @@
 package br.com.liebherr.liebherrapp.di
 
-import br.com.liebherr.liebherrapp.MainViewModel
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
+import br.com.liebherr.liebherrapp.home.viewmodel.MoviesListViewModel
 import br.com.liebherr.liebherrapp.network.RetrofitClient
 import br.com.liebherr.liebherrapp.repository.MoviesRepository
 import br.com.liebherr.liebherrapp.usecase.GetMoviesUseCase
@@ -23,9 +27,14 @@ private val useCases = module {
 }
 
 private val viewModelModule = module {
-    viewModel { MainViewModel(getMoviesUseCase = get()) }
+    viewModel { MainViewModel() }
+    viewModel { MoviesListViewModel(getMoviesUseCase = get()) }
 }
 
 fun loadKoinModules() {
     org.koin.core.context.loadKoinModules(listOf(serviceModule, repositoryModule, useCases, viewModelModule))
+}
+
+fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, expression: (T?) -> Unit) {
+    liveData.observe(this, Observer(expression))
 }

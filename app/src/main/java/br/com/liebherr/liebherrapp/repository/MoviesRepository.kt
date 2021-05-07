@@ -1,9 +1,9 @@
 package br.com.liebherr.liebherrapp.repository
 
-import okhttp3.ResponseBody
+import br.com.liebherr.liebherrapp.model.SearchResponse
 
 class MoviesRepository(private val service: ServiceAPI) {
 
-    suspend fun getMovies(): ResponseBody = service.getMovies("batman")
+    suspend fun getMovies(): SearchResponse = service.getMovies("batman")
 
 }

@@ -10,6 +10,8 @@ import br.com.liebherr.liebherrapp.R
 import br.com.liebherr.liebherrapp.databinding.FragmentMovieDetailsBinding
 import br.com.liebherr.liebherrapp.extension.activityViewModel
 import br.com.liebherr.liebherrapp.extension.observe
+import br.com.liebherr.liebherrapp.extension.showErrorMessage
+import br.com.liebherr.liebherrapp.extension.showProgressBar
 import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MovieDetailsViewModel
 import br.com.liebherr.liebherrapp.model.MovieDetailsResponse
@@ -35,17 +37,11 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun showProgressBar(show: Boolean) {
-        binding.progressBar.visibility = when {
-            show -> View.VISIBLE
-            else -> View.GONE
-        }
+        binding.run { showProgressBar(show, progressBar) }
     }
 
     private fun showErrorMessage(show: Boolean) {
-        binding.errorMessage.visibility = when {
-            show -> View.VISIBLE
-            else -> View.GONE
-        }
+        binding.run { showErrorMessage(show, errorMessage) }
     }
 
     private fun setupViewModel() {

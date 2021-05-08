@@ -2,6 +2,9 @@ package br.com.liebherr.liebherrapp.extension
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
 import androidx.fragment.app.Fragment
@@ -54,3 +57,19 @@ inline fun BaseViewModel.safeRun(onSuccess: () -> Unit) {
         this.genericError.postValue(ex)
     }
 }
+
+fun showProgressBar(show: Boolean, progressBar: ProgressBar) {
+    progressBar.visibility = when {
+        show -> View.VISIBLE
+        else -> View.GONE
+    }
+}
+
+fun showErrorMessage(show: Boolean, textView: TextView) {
+    textView.visibility = when {
+        show -> View.VISIBLE
+        else -> View.GONE
+    }
+}
+
+

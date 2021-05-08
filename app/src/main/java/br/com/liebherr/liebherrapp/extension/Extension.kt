@@ -4,19 +4,16 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import br.com.liebherr.liebherrapp.R
-
-fun AppCompatActivity.bindingContentView(layout: Int): ViewDataBinding {
-    return DataBindingUtil.setContentView(this, layout)
-}
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, expression: (T?) -> Unit) {
     liveData.observe(this, Observer(expression))

@@ -34,8 +34,6 @@ class MoviesListAdapter(private val list: List<Movie>) : RecyclerView.Adapter<Mo
 
             itemView.run {
                 setOnClickListener { selectedMovie.value = item }
-                /*setOnClickListener { selectedGif.value = item }
-                favIcon.setOnClickListener { saveGif.value = item }*/
             }
         }
     }

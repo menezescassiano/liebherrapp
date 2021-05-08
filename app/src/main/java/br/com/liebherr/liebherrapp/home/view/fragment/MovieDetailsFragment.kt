@@ -12,6 +12,7 @@ import br.com.liebherr.liebherrapp.extension.activityViewModel
 import br.com.liebherr.liebherrapp.extension.observe
 import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MovieDetailsViewModel
+import br.com.liebherr.liebherrapp.model.MovieDetailsResponse
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,19 +27,50 @@ class MovieDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_details, container, false)
 
-        binding.progressBar.visibility = View.VISIBLE
-        viewModel.getMovieDetails(flowViewModel.selectedMovie)
+        showProgressBar(true)
+
+        setupViewModel()
+
+        return binding.root
+    }
+
+    private fun showProgressBar(show: Boolean) {
+        binding.progressBar.visibility = when {
+            show -> View.VISIBLE
+            else -> View.GONE
+        }
+    }
+
+    private fun setupViewModel() {
         viewModel.apply {
+
+            getMovieDetails(flowViewModel.selectedMovie)
+
             observe(onMovieDetailsResponse) {
-                binding.progressBar.visibility = View.GONE
+
+                showProgressBar(false)
+
                 it?.let {
-                    binding.movieTitle.text = it.title
-                    binding.released.text = it.released
-                    setImageUrl(it.poster)
+                    setupUi(it)
                 }
             }
         }
-        return binding.root
+    }
+
+    private fun setupUi(movieDetailsResponse: MovieDetailsResponse) {
+        binding.run {
+            toolBar.setOnClickListener {
+                activity?.onBackPressed()
+            }
+
+            movieDetailsResponse.run {
+                movieTitle.text = title
+                releasedText.text = released
+                runtimeText.text = runtime
+                plotText.text = plot
+                setImageUrl(poster)
+            }
+        }
     }
 
     private fun setImageUrl(plot: String) {
@@ -51,5 +83,4 @@ class MovieDetailsFragment : Fragment() {
                 .into(imageView)
         }
     }
-
 }

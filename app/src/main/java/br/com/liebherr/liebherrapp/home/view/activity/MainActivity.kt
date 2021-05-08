@@ -20,20 +20,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupViewModel()
+        setContentView(R.layout.activity_navigation)
+        setupNavController()
+    }
+
+    private fun setupViewModel() {
         viewModel.apply {
             observe(navigationEvent) { it?.let { navigateTo(it) } }
         }
+    }
 
-        setContentView(R.layout.activity_navigation)
+    private fun setupNavController() {
         navController = defaultNavController(R.navigation.navigation_movies)
-
     }
 
     private fun navigateTo(navigation: MainViewModel.Navigation) {
         when (navigation) {
             MoviesList -> navController.defaultNavigate(R.id.frag_movies_list)
             MovieDetails -> navController.defaultNavigate(R.id.frag_movie_details)
-            //ClosePendingOrdersFlow -> finish()
         }
     }
 }

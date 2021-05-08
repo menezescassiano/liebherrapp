@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.liebherr.liebherrapp.databinding.LayoutMoviesListItemBinding
 import br.com.liebherr.liebherrapp.model.Movie
 
-class MovieViewHolder(private val binding: LayoutMoviesListItemBinding): RecyclerView.ViewHolder(binding.root) {
+class MovieViewHolder(private val binding: LayoutMoviesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Movie) {
 
@@ -14,5 +14,4 @@ class MovieViewHolder(private val binding: LayoutMoviesListItemBinding): Recycle
             executePendingBindings()
         }
     }
-
 }

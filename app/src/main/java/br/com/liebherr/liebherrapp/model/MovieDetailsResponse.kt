@@ -7,4 +7,5 @@ class MovieDetailsResponse(
     @SerializedName("Released") val released: String,
     @SerializedName("Runtime") val runtime: String,
     @SerializedName("Plot") val plot: String,
-    @SerializedName("Poster") val poster: String)
+    @SerializedName("Poster") val poster: String
+)

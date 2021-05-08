@@ -26,19 +26,31 @@ class MoviesListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_list, container, false)
 
+        setupViewModel()
+
+        return binding.root
+    }
+
+    private fun showProgressBar(show: Boolean) {
+        binding.progressBar.visibility = when {
+            show -> View.VISIBLE
+            else -> View.GONE
+        }
+    }
+
+    private fun setupViewModel() {
         viewModel.apply {
-            binding.progressBar.visibility = View.VISIBLE
+            showProgressBar(true)
             observe(onMoviesSuccessResponse) {
-                binding.progressBar.visibility = View.GONE
+
+                showProgressBar(false)
+
                 it?.let {
                     setRecyclerView(it)
                 }
             }
-
             lifecycle.addObserver(this)
         }
-
-        return binding.root
     }
 
     private fun setRecyclerView(list: List<Movie>) {
@@ -56,5 +68,4 @@ class MoviesListFragment : Fragment() {
             }
         }
     }
-
 }

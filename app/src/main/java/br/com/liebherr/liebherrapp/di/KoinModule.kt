@@ -20,9 +20,6 @@ private val serviceModule = module {
 private val repositoryModule = module {
     single { MoviesRepository(service = get()) }
 }
-/*private val resourceManager = module {
-    single { ResourceManager(context = get()) }
-}*/
 
 private val useCases = module {
     single { GetMoviesUseCase(repository = get()) }

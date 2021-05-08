@@ -27,12 +27,20 @@ class MoviesListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_list, container, false)
 
         setupViewModel()
+        setupListener()
 
         return binding.root
     }
 
     private fun showProgressBar(show: Boolean) {
         binding.progressBar.visibility = when {
+            show -> View.VISIBLE
+            else -> View.GONE
+        }
+    }
+
+    private fun showErrorMessage(show: Boolean) {
+        binding.errorMessage.visibility = when {
             show -> View.VISIBLE
             else -> View.GONE
         }
@@ -49,7 +57,23 @@ class MoviesListFragment : Fragment() {
                     setRecyclerView(it)
                 }
             }
+
+            observe(genericError) {
+                it?.let {
+                    showErrorMessage(true)
+                    showProgressBar(false)
+                }
+            }
+
             lifecycle.addObserver(this)
+        }
+    }
+
+    private fun setupListener() {
+        binding.errorMessage.setOnClickListener {
+            showErrorMessage(false)
+            showProgressBar(true)
+            viewModel.getMovies()
         }
     }
 

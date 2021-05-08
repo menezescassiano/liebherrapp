@@ -26,6 +26,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/layout_movies_list_item"
             tools:itemCount="4"/>
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/try_again_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

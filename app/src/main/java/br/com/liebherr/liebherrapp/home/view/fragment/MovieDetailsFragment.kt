@@ -30,11 +30,19 @@ class MovieDetailsFragment : Fragment() {
 
         setupViewModel()
 
+        setupListener()
         return binding.root
     }
 
     private fun showProgressBar(show: Boolean) {
         binding.progressBar.visibility = when {
+            show -> View.VISIBLE
+            else -> View.GONE
+        }
+    }
+
+    private fun showErrorMessage(show: Boolean) {
+        binding.errorMessage.visibility = when {
             show -> View.VISIBLE
             else -> View.GONE
         }
@@ -53,6 +61,21 @@ class MovieDetailsFragment : Fragment() {
                     setupUi(it)
                 }
             }
+
+            observe(genericError) {
+                it?.let {
+                    showErrorMessage(true)
+                    showProgressBar(false)
+                }
+            }
+        }
+    }
+
+    private fun setupListener() {
+        binding.errorMessage.setOnClickListener {
+            showErrorMessage(false)
+            showProgressBar(true)
+            viewModel.getMovieDetails(flowViewModel.selectedMovie)
         }
     }
 
@@ -73,5 +96,4 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun setImageUrl(plot: String) = context?.let { ImageUtils.setImageUrl(it, binding.imageView, plot) }
-
 }

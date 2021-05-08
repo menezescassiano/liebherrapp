@@ -13,8 +13,7 @@ import br.com.liebherr.liebherrapp.extension.observe
 import br.com.liebherr.liebherrapp.home.viewmodel.MainViewModel
 import br.com.liebherr.liebherrapp.home.viewmodel.MovieDetailsViewModel
 import br.com.liebherr.liebherrapp.model.MovieDetailsResponse
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import br.com.liebherr.liebherrapp.util.ImageUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailsFragment : Fragment() {
@@ -73,14 +72,6 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-    private fun setImageUrl(plot: String) {
-        val imageView = binding.imageView
-        val placeHolder = R.drawable.placeholder
+    private fun setImageUrl(plot: String) = context?.let { ImageUtils.setImageUrl(it, binding.imageView, plot) }
 
-        plot.run {
-            Glide.with(imageView.context).load(this)
-                .apply(RequestOptions().placeholder(placeHolder))
-                .into(imageView)
-        }
-    }
 }
